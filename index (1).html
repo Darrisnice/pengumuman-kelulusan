@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengumuman Kelulusan - UPTD SMP Negeri 2 Tragah</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+    h1 { text-align: center; }
+    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; }
+    .result { margin-top: 20px; padding: 15px; background: #e0f7fa; border-radius: 5px; }
+    .notfound { color: red; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pengumuman Kelulusan</h1>
+    <p>Masukkan NISN Anda untuk melihat hasil kelulusan:</p>
+    <input type="text" id="nisnInput" placeholder="Masukkan NISN">
+    <button onclick="cekKelulusan()">Cek Kelulusan</button>
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+  <script>
+    const dataSiswa = { ... }; // shortened for brevity
+    function cekKelulusan() {
+      const nisn = document.getElementById("nisnInput").value.trim();
+      const resultDiv = document.getElementById("result");
+      if (dataSiswa[nisn]) {
+        const siswa = dataSiswa[nisn];
+        resultDiv.innerHTML = `<strong>Nama:</strong> ${siswa.nama}<br>
+                               <strong>NISN:</strong> ${nisn}<br>
+                               <strong>Rata-rata:</strong> ${siswa.rata}<br>
+                               <strong>Keterangan:</strong> ${siswa.status}`;
+        resultDiv.classList.remove("notfound");
+      } else {
+        resultDiv.innerHTML = "Data tidak ditemukan. Periksa kembali NISN Anda.";
+        resultDiv.classList.add("notfound");
+      }
+      resultDiv.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
