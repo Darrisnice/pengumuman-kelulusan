@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pengumuman Kelulusan</title>
+</head>
+<body>
+  <h1>Pengumuman Kelulusan UPTD SMP Negeri 2 Tragah</h1>
+  <p>Masukkan NISN Anda:</p>
+  <input type="text" id="nisnInput" placeholder="Masukkan NISN">
+  <button onclick="cekKelulusan()">Cek</button>
+
+  <div id="hasil" style="margin-top:20px;"></div>
+
+  <script>
+    const dataSiswa = {
+      "0099979077": { nama: "AHMAD RAFI ALI", rata2: "81,66", status: "LULUS" },
+      "3098995309": { nama: "ANDIRIYAH", rata2: "80,75", status: "TIDAK LULUS" },
+      "0096052608": { nama: "ANISA", rata2: "84,09", status: "LULUS" },
+      "0108117912": { nama: "ENIWATI NINGSIH", rata2: "82,24", status: "LULUS" },
+      "0088362615": { nama: "FAHRUR ROZAK", rata2: "80,61", status: "LULUS" },
+      "0076695506": { nama: "FANITA", rata2: "84,52", status: "LULUS" }
+    };
+
+    function cekKelulusan() {
+      const nisn = document.getElementById("nisnInput").value.trim();
+      const hasil = document.getElementById("hasil");
+
+      if (dataSiswa[nisn]) {
+        const siswa = dataSiswa[nisn];
+        hasil.innerHTML = `
+          <p><strong>Nama:</strong> ${siswa.nama}</p>
+          <p><strong>Rata-rata:</strong> ${siswa.rata2}</p>
+          <p><strong>Status:</strong> ${siswa.status}</p>
+        `;
+      } else {
+        hasil.innerHTML = "<p style='color:red;'>NISN tidak ditemukan.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
